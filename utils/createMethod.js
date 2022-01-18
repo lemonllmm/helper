@@ -9,7 +9,7 @@ const createMethod = (router=null, url='', method='get', fn=()=>{}) => {
                 const param = ctx.request.body;
                 let res = await fn(param,ctx);
                 if (res) {
-                    ReturnBody(ctx, 200)
+                    ReturnBody(ctx, 200,res)
                 } else {
                     ReturnBody(ctx, 400)
                 }
@@ -18,9 +18,7 @@ const createMethod = (router=null, url='', method='get', fn=()=>{}) => {
             return router.get(url, async (ctx) => {
                 const search = ctx.request.query;
                 let res = await fn(search,ctx);
-               
-                    ReturnBody(ctx, 200,Array.isArray(res)?res:[res])
-               
+                ReturnBody(ctx, 200,Array.isArray(res)?res:[res])
             });
         case "delete":
             return router.delete(url, async (ctx) => {

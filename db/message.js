@@ -10,14 +10,14 @@ const Message = sequelize.define('Message', {
       type: Sequelize.STRING,
       allowNull: true
     },
-    // datetime: {
-    //   type: Sequelize.DATE, 
-    //   allowNull: false,
-    //   defaultValue: Sequelize.NOW
-    //   // allowNull 默认为 true
+    datetime: {
+      type: Sequelize.DATE, 
+      allowNull: false,
+      defaultValue: Sequelize.NOW
+      // allowNull 默认为 true
     // 先要定义表 然后定义类型 表下写那个数据库的增删改查方法 再进行导出 
-    //然后再路由里面进行注册 调用数据库的方法 就完成了一个接口
-    // },
+    // 然后再路由里面进行注册 调用数据库的方法 就完成了一个接口
+    },
     id:{
         type:Sequelize.STRING(111),
         primaryKey:true
