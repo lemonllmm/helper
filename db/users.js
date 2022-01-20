@@ -27,7 +27,8 @@ const Users = sequelize.define('Users', {
     type:Sequelize.STRING
   },
   stuGrade:{
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue:'2022级'
   },
   ID:{
     type:Sequelize.STRING
@@ -77,8 +78,10 @@ const GetUser = async(options) => {
 //     return await Goods.findAll()
 // }
 module.exports = {
-  AddUsers,
-  GetUser
+  AddUsers,//注册
+  GetUser, //登陆
+
+
     // AddGoods,
     // DeleteGoods,
     // UpdateGoods,

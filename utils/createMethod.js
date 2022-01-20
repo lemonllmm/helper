@@ -9,7 +9,7 @@ const createMethod = (router=null, url='', method='get', fn=()=>{}) => {
                 const param = ctx.request.body;
                 let res = await fn(param,ctx);
                 if (res) {
-                    ReturnBody(ctx, 200,res)
+                    ReturnBody(ctx, 200)
                 } else {
                     ReturnBody(ctx, 400)
                 }
