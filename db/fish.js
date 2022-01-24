@@ -3,46 +3,36 @@
 const sequelize  = require('./config');
 const Sequelize  = require('sequelize');
 
-const Users = sequelize.define('Users', {
+const Fish = sequelize.define('Fish', {
   // 在这里定义模型属性,
-  stuHead:{ type: Sequelize.STRING,
-    // primaryKey:true
+  fown:{ type: Sequelize.STRING,
     },
-    stuName: {
+    stu_id: {
     type: Sequelize.STRING,
     allowNull: true
   },
-  stuID: {
-    type: Sequelize.STRING,
-    primaryKey:true
-    // allowNull 默认为 true
-  },
-  stuSex:{
+  fprice: {
     type: Sequelize.STRING,
   },
-  stuNumber:{
-    type:Sequelize.STRING
-  },
-  stuDegree:{
-    type:Sequelize.STRING
-  },
-  stuGrade:{
+  fimg:{
     type: Sequelize.STRING,
-    defaultValue:'2022级'
   },
-  ID:{
+  fcomments:{
     type:Sequelize.STRING
   },
-  password:{
-    type: Sequelize.STRING
+  fintro:{
+    type:Sequelize.STRING
   },
-  root:{
-    type: Sequelize.BOOLEAN,
-    defaultValue:false
+  fstatus:{
+      type:Sequelize.STRING
+  },
+  fid:{
+      type:Sequelize.STRING,
+      primaryKey:true
+  },
+  fname:{
+    type:Sequelize.STRING
   }
-
- 
-   
 }, {
   // 这是其他模型参数
   freezeTableName: true,
@@ -51,16 +41,16 @@ const Users = sequelize.define('Users', {
 // const AddUsers = async({stuHead,stuuName,stuID,stuSex,stuNumber,stueDegree,ID,password,stuGrade}) => {
 //     return await Users.create({stuHead,stuuName,stuID,stuSex,stuNumber,stueDegree,ID,password})
 // }
-const AddUsers = async(payload) => {
+const AddFish = async(payload) => {
   console.log(payload,'ppp');
-  return await Users.create({...payload})
+  return await Fish.create({...payload})
 
 }
-const GetUser = async(options) => {
+const GetFish = async(options) => {
   if(options) {
-    return await Users.findOne({where:options})
+    return await Fish.findOne({where:options})
   }
-  return await Users.findAll()
+  return await Fish.findAll()
 }
 // const DeleteGoods = async(options) => {
 //     console.log(options)
@@ -78,13 +68,6 @@ const GetUser = async(options) => {
 //     return await Goods.findAll()
 // }
 module.exports = {
-  AddUsers,//注册
-  GetUser, //登陆
-
-
-    // AddGoods,
-    // DeleteGoods,
-    // UpdateGoods,
-    // GetGoodsById,
-    // GetAllGoods
+    AddFish,
+    GetFish
 };

@@ -4,9 +4,8 @@ const Sequelize  = require('sequelize');
 
 const News = sequelize.define("News",{
     new_id:{ //校园咨询的id
-        type:Sequelize.INTEGER,
+        type:Sequelize.STRING,
         primaryKey:true,
-        autoIncrement:true,
     },
     title:{ //咨询标题
         type:Sequelize.STRING
@@ -14,7 +13,6 @@ const News = sequelize.define("News",{
     content:{ //咨询内容
         type:Sequelize.TEXT
     }
-
 },
 {
     timestamps:true,
@@ -22,7 +20,7 @@ const News = sequelize.define("News",{
 });
 
 const GetNews = async(options)=>{
-    if(options){
+    if(options.length){
         return await News.findOne({where:options})
     }
     return await News.findAll()
@@ -30,11 +28,19 @@ const GetNews = async(options)=>{
 
 
 const AddNews = async(payload)=>{
-    return await News.create(payload)
+    console.log(payload,"111")
+    return await News.create({...payload})
+
+}
+
+const DeleteNews = async(options)=>{
+    console.log(options)
+    return News.destroy({where:options})
 
 }
 
 module.exports ={
     GetNews,
-    AddNews
+    AddNews,
+    DeleteNews
 }

@@ -1,27 +1,35 @@
 const Router= require('koa-router')
 const { v4: uuidv4} = require("uuid");
-const {GetNews,AddNews} = require("../../db/news")
+const {GetNews,AddNews,DeleteNews} = require("../../db/news")
 const { createMethod } = require('../../utils/createMethod');
 
 const news = new Router()
 
 
 createMethod(news,"/getNews","get",async(q)=>{
-    const payload = q;
-    console.log(payload);
-    return await GetNews(payload);
+    return await GetNews(q);
     //获取新闻标题时间
     
 })
 
 createMethod(news,"/addNews","post",async(q)=>{
-    // const {title,content} =q;
-    const data = {
-        ...q
-    }
-    if(data) {
-      
+  const {title,content} = q
+  const data ={
+    new_id:uuidv4(),
+    title,
+    content,
+    
+  }
+   console.log('data1',data)
       return  await AddNews(data)
+    
+})
+
+createMethod(news,"/deleteNews","delete",async(q)=>{
+    const {new_id} = q;
+    
+    if(new_id) {
+     return   await DeleteNews({new_id});
     }
 })
 

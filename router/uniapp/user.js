@@ -7,15 +7,13 @@ const user = new Router()
 
 
 createMethod(user,"/addUser",'post',async(q)=>{
-    const payload =q;
-    console.log(payload);
-    return await AddUsers(payload);
-    // return []
-    
-
+    if(q) {
+      return  await AddUsers(q).then(res=> res).catch(err=>err)
+    }
 })
 createMethod(user,"/login",'post',async(q)=>{
-    let res =  await GetUser(q),data=null;
+    let res =  await GetUser(q).then(res=>res).catch(err=>err)
+    let data=null;
     if(res) {
        data = {...res.dataValues};
         delete data.ID;
