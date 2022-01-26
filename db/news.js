@@ -28,7 +28,7 @@ const GetNews = async(options)=>{
 
 
 const AddNews = async(payload)=>{
-    console.log(payload,"111")
+    // console.log(payload,"111")
     return await News.create({...payload})
 
 }

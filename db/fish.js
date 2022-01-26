@@ -5,32 +5,38 @@ const Sequelize  = require('sequelize');
 
 const Fish = sequelize.define('Fish', {
   // 在这里定义模型属性,
-  fown:{ type: Sequelize.STRING,
+  fown:{ type: Sequelize.STRING,  //物品的卖家昵称
     },
-    stu_id: {
+    sale_id: {                     //物品卖家
     type: Sequelize.STRING,
     allowNull: true
   },
-  fprice: {
+  buyer_id:{
+    type: Sequelize.STRING,  //物品买家账号
+  },
+  buyer_name:{
+    type: Sequelize.STRING, //物品买家昵称
+  },
+  fprice: {                       //物品价格
     type: Sequelize.STRING,
   },
-  fimg:{
+  fimg:{                        //物品图片
     type: Sequelize.STRING,
   },
-  fcomments:{
+  fcomments:{                   //物品评论
     type:Sequelize.STRING
   },
-  fintro:{
+  fintro:{                //物品介绍
     type:Sequelize.STRING
   },
-  fstatus:{
+  fstatus:{              //物品状态
       type:Sequelize.STRING
   },
-  fid:{
+  fid:{                //物品id唯一值
       type:Sequelize.STRING,
       primaryKey:true
   },
-  fname:{
+  fname:{              //物品名称
     type:Sequelize.STRING
   }
 }, {
@@ -52,6 +58,9 @@ const GetFish = async(options) => {
   }
   return await Fish.findAll()
 }
+const GetAllFish = async()=> {
+  return await Fish.findAll()
+}
 // const DeleteGoods = async(options) => {
 //     console.log(options)
 //     return await Goods.destroy({where:options})
@@ -59,15 +68,15 @@ const GetFish = async(options) => {
 // const UpdateGoods = async(payload,options) => {
 //     return await Goods.update(payload,{where:options})
 // }
-// const GetGoodsById = async(options) => {
-//     return await Goods.findOne({
-//         where:options
-//     })
-// }
-// const GetAllGoods = async()=> {
-//     return await Goods.findAll()
-// }
+const GetFishById = async(options) => {
+    return await Fish.findOne({
+        where:options
+    })
+}
+
 module.exports = {
     AddFish,
-    GetFish
+    GetFish,
+    GetAllFish,
+    GetFishById
 };

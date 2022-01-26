@@ -1,24 +1,29 @@
 const Router= require('koa-router');
-const {AddFish,GetFish} = require("../../db/fish");
+const {AddFish,GetFish,GetAllFish,GetFishById} = require("../../db/fish");
 const { v4: uuidv4} = require("uuid");
 const { createMethod } = require('../../utils/createMethod');
 const fish = new Router()
 
 createMethod(fish,"/Addfish","post",async(q)=>{
     //  return   await GetFish();
-     const payload =q;
-     console.log(payload);
-     return await AddFish(payload);
+    //  let payload =q;
+     let  data ={
+       ...q,
+       fid:uuidv4(),
+     }
+
+    //  console.log(payload);
+     return await AddFish(data);
     
 })
 
 
-createMethod(fish,"/Getfish","get",async(q)=>{
-    if(data) {
+// createMethod(fish,"/Getfish","get",async(q)=>{
+//     if(data) {
       
-      return  await GetFish(data)
-    }
-})
+//       return  await GetFish(data)
+//     }
+// })
 
 // createMethod(fish,"/updateGoods","post",async(q)=>{
 //     const {name,changeName} = q;
@@ -26,14 +31,13 @@ createMethod(fish,"/Getfish","get",async(q)=>{
 //       return   await UpdateGoods({lastName:changeName},{firstName:name})
 //     }
 // })
-// createMethod(fish,"/getGoods","get",async(q)=>{
-//     let {firstName} = q;
-//     if(firstName) {
-//         return await GetGoodsById(url)
-//     } else {
-//         return await GetAllGoods();
-//     }
-// })
+createMethod(fish,"/Getfish","get",async(q)=>{
+    let {stu_id} = q;
+    if(stu_id) {
+        return await GetFishById(url)
+    } else {
+        return await GetAllFish();
+    }
+})
 
-// const fishList = []
 module.exports=fish
