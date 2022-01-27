@@ -5,7 +5,8 @@ const Sequelize  = require('sequelize');
 
 const Love = sequelize.define('Love', {
   // 在这里定义模型属性,
-  Lname:{ type: Sequelize.STRING,  //物品的卖家昵称
+  Lname:{ type: Sequelize.STRING, //物品的卖家昵称
+    defaultValue:'匿名用户' //设置默认值
     },
     Lproperty: {                     //物品卖家
     type: Sequelize.STRING,
@@ -55,7 +56,6 @@ const GetLoveById = async(options) => {
         where:options
     })
 }
-
 module.exports = {
     AddLove,
     GetLoveById,
