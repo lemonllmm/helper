@@ -1,9 +1,8 @@
-
 const sequelize  = require('./config');  //引入数据库连接
 const Sequelize  = require('sequelize'); 
 
 const Chat = sequelize.define("Chat",{
-    msgid:{
+    msgid:{  //消息id
         type:Sequelize.STRING
     },
     sendid:{ //发送方的id
@@ -29,8 +28,11 @@ const Chat = sequelize.define("Chat",{
 
 });
 
+const Getchat = async(options)=>{
+    return await Chat.findAll({where:options})
+}
 
 
 module.exports ={
-    
+    Getchat
 }

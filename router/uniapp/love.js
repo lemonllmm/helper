@@ -20,9 +20,10 @@ createMethod(love,"/AddLove","post",async(q)=>{
 })
 
 createMethod(love,"/Getlove","get",async(q)=>{
-  let {stu_id} = q;
-  if(stu_id) {
-      return await GetLoveById(url)
+  // let {Lproperty} = q;
+  
+  if(q) {
+      return await GetLoveById(q)
   } else {
       return await GetAllLove();
   }

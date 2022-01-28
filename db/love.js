@@ -41,18 +41,18 @@ const AddLove = async(payload) => {
   return await Love.create({...payload})
 
 }
-const GetLove = async(options) => {
-  if(options) {
-    return await Love.findOne({where:options})
-  }
-  return await Love.findAll()
-}
+// const GetLove = async(options) => {
+//   if(options) {
+//     return await Love.findOne({where:options})
+//   }
+//   return await Love.findAll()
+// }
 const GetAllLove = async()=> {
   return await Love.findAll()
 }
 
 const GetLoveById = async(options) => {
-    return await Love.findOne({
+    return await Love.findAll({
         where:options
     })
 }
