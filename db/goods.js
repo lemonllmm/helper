@@ -15,6 +15,9 @@ Gname: {
     type: Sequelize.STRING,
     allowNull: true
   },
+  Gplace:{
+    type:Sequelize.STRING
+  },
 Gimg: {  
     //   物品图片链接
     type: Sequelize.STRING
